@@ -13,23 +13,8 @@ const preset_options: preset.PresetOptions = {
 	cjs: true,
 };
 
-export default defineConfig(async (config) => {
-	const watching = !!config.watch;
-
-	const parsed_data = preset.parsePresetOptions(preset_options, watching);
-
-	if (!watching) {
-		const package_fields = preset.generatePackageExports(parsed_data);
-
-		console.log(
-			`\npackage.json: \n${JSON.stringify(package_fields, null, 2)}\n\n`
-		);
-
-		/*
-            will update ./package.json with the correct export fields
-        */
-		await preset.writePackageJson(package_fields);
-	}
+export default defineConfig(async () => {
+	const parsed_data = preset.parsePresetOptions(preset_options);
 
 	return {
 		...preset.generateTsupOptions(parsed_data)[0],
