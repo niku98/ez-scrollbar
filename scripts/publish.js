@@ -117,7 +117,7 @@ function getLatestPackageVersion(packageName) {
 
 function isPackageChanged(packagePath) {
 	const tags = getTags();
-	if (tags.length === 0) {
+	if (tags.length < 2) {
 		return true;
 	}
 
