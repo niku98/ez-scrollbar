@@ -1,3 +1,4 @@
+import type { ScrollBarOptions } from "@niku/ez-scrollbar-core";
 import type { PropType, StyleValue } from "vue";
 
 type ClassValue = string | Record<string, boolean>;
@@ -23,6 +24,15 @@ export function axisScrollBarProps() {
 			type: Boolean as PropType<boolean>,
 			required: false,
 			default: true,
+		},
+		updateStyle: {
+			type: Boolean as PropType<boolean>,
+			required: false,
+			default: true,
+		},
+		modifier: {
+			type: Function as PropType<ScrollBarOptions["modifier"]>,
+			required: false,
 		},
 		style: {
 			type: [String, Object, Array] as PropType<StyleValue>,
