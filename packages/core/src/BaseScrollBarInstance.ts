@@ -66,7 +66,7 @@ export abstract class BaseScrollBarInstance {
 				return;
 			}
 
-			const show = size < containerSize;
+			const show = this.shouldShowScrollBar();
 
 			scrollBar.setAttribute("data-visible", show ? "true" : "false");
 			scrollBar.setAttribute("data-size", `${size}px`);
@@ -103,4 +103,5 @@ export abstract class BaseScrollBarInstance {
 	protected abstract updateStore(): void;
 	protected abstract updateScrollBarStyle(): void;
 	protected abstract onAutoHide(): void;
+	protected abstract shouldShowScrollBar(): boolean;
 }

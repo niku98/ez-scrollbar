@@ -28,6 +28,14 @@ const App = () => {
 					};
 				},
 			}}
+			horizontal={{
+				class: "vertical-scrollbar",
+				style: {
+					"background-color": "black",
+					height: "5px",
+					"z-index": "10",
+				},
+			}}
 		>
 			<p>
 				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas
@@ -59,11 +67,18 @@ const App = () => {
 				dolore dignissimos provident consequatur explicabo dicta pariatur
 				assumenda ullam dolor vero repudiandae!
 			</p>
-			<p>
+			<p
+				style={{
+					"white-space": "nowrap",
+				}}
+			>
 				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas
 				tempore doloribus numquam? Maiores nostrum quisquam officia modi quis,
 				dolore dignissimos provident consequatur explicabo dicta pariatur
-				assumenda ullam dolor vero repudiandae!
+				assumenda ullam dolor vero repudiandae! Lorem ipsum dolor sit amet,
+				consectetur adipisicing elit. Reiciendis, nulla. Dolore esse tempora
+				reprehenderit soluta, iste fugit atque! Fugit accusantium laudantium,
+				voluptas totam dolor itaque aut quo similique! Ullam, quidem.
 			</p>
 			<p>
 				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas

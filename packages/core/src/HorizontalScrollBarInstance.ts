@@ -1,6 +1,8 @@
 import { BaseScrollBarInstance } from "src/BaseScrollBarInstance";
 
 export class HorizontalScrollBarInstance extends BaseScrollBarInstance {
+	private oldOffset: number = 0;
+
 	protected onMount(): void {
 		const { scrollBar } = this.options;
 		if (!scrollBar) {
@@ -17,6 +19,8 @@ export class HorizontalScrollBarInstance extends BaseScrollBarInstance {
 		if (!container) {
 			return;
 		}
+
+		this.oldOffset = this.store.state.offset;
 
 		this.store.setState(() => {
 			const newStoreState = {
@@ -37,13 +41,13 @@ export class HorizontalScrollBarInstance extends BaseScrollBarInstance {
 
 	protected updateScrollBarStyle(): void {
 		const { scrollBar } = this.options;
-		const { containerSize, size, offset, crossOffset } = this.store.state;
+		const { size, offset, crossOffset } = this.store.state;
 
 		if (!scrollBar) {
 			return;
 		}
 
-		const show = size < containerSize;
+		const show = this.shouldShowScrollBar();
 
 		scrollBar.style.opacity = show ? "1" : "0";
 		scrollBar.style.visibility = show ? "visible" : "hidden";
@@ -58,7 +62,17 @@ export class HorizontalScrollBarInstance extends BaseScrollBarInstance {
 			return;
 		}
 
-		scrollBar.style.opacity = "1";
-		scrollBar.style.visibility = "visible";
+		scrollBar.style.opacity = "0";
+		scrollBar.style.visibility = "hidden";
+	}
+
+	protected shouldShowScrollBar(): boolean {
+		const { containerSize, size, offset } = this.store.state;
+
+		if (offset === this.oldOffset) {
+			return false;
+		}
+
+		return size < containerSize;
 	}
 }
